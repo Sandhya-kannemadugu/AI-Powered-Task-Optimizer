@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>AI Productivity Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Background Animation -->
+<div id="particles-js"></div>
+
+<!-- Dashboard Content -->
+<div class="dashboard">
+
+<h1 class="heading">AI Productivity Dashboard</h1>
+
+<p class="subheading">Real-time Emotion Detection System</p>
+
+<div class="camera-box">
+
+<img src="/video" width="600">
+
+</div>
+
+<br>
+
+<button onclick="getTask()" class="btn">
+Get AI Task Suggestion
+</button>
+
+<p id="task"></p>
+
+<br>
+
+<a href="/logout" class="logout">Logout</a>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:80},
+size:{value:3},
+line_linked:{enable:true},
+move:{speed:2}
+}
+
+});
+
+</script>
+
+
+<script>
+
+function getTask(){
+
+fetch("/task")
+
+.then(response=>response.json())
+
+.then(data=>{
+document.getElementById("task").innerText=data.task
+})
+
+}
+
+</script>
+
+</body>
+</html>
